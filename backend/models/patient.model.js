@@ -13,6 +13,7 @@ const patientSchema = new mongoose.Schema({
         type:String,
         enum:["male", "female","other"],
         default:"male",
+        required:true,
     },
     medicalHistory:{
         type:[String],
