@@ -22,8 +22,7 @@ const getAllWard = async(req, res)=>{
 // add Ward
 
 const addWard = async(req, res)=>{
-    console.log("Adding Ward", req.body);
-
+  
     try {
         const {wardNumber, capacity} = req.body;
         if(!wardNumber || !capacity){

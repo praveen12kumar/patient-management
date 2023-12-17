@@ -19,8 +19,10 @@ const getAllPatients = async(req, res)=>{
 // get a patient
 
 const getPatientDetials = async(req, res)=>{
+
     try {
-        const patient = await Patient.findById(req.params.id);
+        const  patient = await Patient.findById(req.params.id);
+        console.log('patient id',patient);
         if(!patient){
             return res.status(404).json({
                 success:false,
@@ -73,6 +75,7 @@ const addPatient = async(req, res)=>{
 const updatePatient = async(req, res)=>{
     try {
         let patient = await Patient.findById(req.params.id);
+       
         if(!patient){
             return res.status(404).json({
                 success:false,
