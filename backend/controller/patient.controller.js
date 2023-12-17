@@ -16,6 +16,32 @@ const getAllPatients = async(req, res)=>{
 }
 
 
+// get a patient
+
+const getPatientDetials = async(req, res)=>{
+    try {
+        const patient = await Patient.findById(req.params.id);
+        if(!patient){
+            return res.status(404).json({
+                success:false,
+                message:"Patient not found",
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            patient
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Error in fetch patient",
+            error:error.message
+        })
+    }
+}
+
+
 // add a new patient
 const addPatient = async(req, res)=>{
     
@@ -101,4 +127,4 @@ const deletePatient = async(req, res)=>{
 
 
 
-export {getAllPatients, addPatient, updatePatient, deletePatient}
+export {getAllPatients, getPatientDetials ,addPatient, updatePatient, deletePatient}
