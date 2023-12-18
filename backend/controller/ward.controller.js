@@ -32,6 +32,16 @@ const addWard = async(req, res)=>{
             })
         }
 
+        const existingWard = await Ward.findOne({wardNumber});
+
+        if(existingWard){
+            return res.status(403).json({
+                success: false,
+                message: "Ward already exists"
+            })
+        }
+
+
         const ward = await Ward.create(req.body);
         res.status(201).json({
             success: true,
@@ -42,7 +52,8 @@ const addWard = async(req, res)=>{
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: "Error while adding Ward"
+            message: "Error while adding Ward",
+            error: error.message,
         })
     }
 };

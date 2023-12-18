@@ -5,14 +5,13 @@ const wardSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
-
     capacity:{
         type:Number,
         required:true,
     },
     specialization:{
         type:String,
-        enum: ["General Ward", "Emergency Ward", "Intensive Care Unit", "Intensive Coronary Care Unit", "Nursery", "Special Septic Nursery", "Burns Ward", "Postoperative Ward", "Postnatal Ward"],
+        enum: ["General Ward", "Emergency Ward", "Intensive Care Unit", "Intensive Coronary Care Unit", "Nursery","Cancer", "Special Septic Nursery", "Burns Ward", "Postoperative Ward", "Postnatal Ward"],
         default: "General Ward"
     }
 },{

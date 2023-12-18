@@ -1,4 +1,6 @@
-import Patient from "../models/patient.model.js"
+import Patient from "../models/patient.model.js";
+import Ward from "../models/ward.model.js";
+
 
 const getAllPatients = async(req, res)=>{
     try {
@@ -55,13 +57,35 @@ const addPatient = async(req, res)=>{
                 message:"Enter name or age or gender or contactInfo or assigned Ward",
             })
         }
-        const patient = await Patient.create(req.body);
+        const existingWard = await Ward.findOne({wardNumber:assignedWard});
+        if(existingWard) {
+            const existingWardCapacity = existingWard.capacity;
+            const tempWardOccupancy = await  Patient.find({assignedWard})
+            const WardOccupancy = tempWardOccupancy.length;
+
+
+            if(WardOccupancy < existingWardCapacity){
+                const patient = await Patient.create(req.body);
+                return res.status(201).json({
+                    success:true,
+                    message:"Patient added successfully",
+                    patient,
+                    })
+            }
+
+           return res.status(403).json({
+            success:false,
+            message: "Ward Capacity full"
+           })
         
-        res.status(201).json({
-            success:true,
-            message:"Patient added successfully",
-            patient,
-        })
+       
+        }
+        if(!existingWard){
+            return res.status(404).json({
+                success:false,
+                message:" Assigned Ward not found",
+            })
+        }
     } catch (error) {
         res.status(500).json({
             success:false,
