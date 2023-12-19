@@ -107,11 +107,13 @@ const updatePatient = async(req, res)=>{
             })
         }
 
-        await patient.updateOne(req.body);
+        const updatedPatient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+          })
         res.status(200).json({
             success:true,
-            message:"Patient updated successfully",
-            
+            message:"Patient updated successfully wow",
+            updatedPatient
         })
 
 
