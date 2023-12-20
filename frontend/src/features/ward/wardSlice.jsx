@@ -21,7 +21,8 @@ export const addWardAsync = createAsyncThunk("wards/addWardAsync", async(ward)=>
 
 export const updateWardAsync = createAsyncThunk("ward/updateWardAsync", async({id, ward})=>{
     const response = await axios.put(`https://patient-management-one.vercel.app/api/v1/ward/update/${id}`, ward);
-    return response.data.wards;
+    console.log(response);
+    return response.data.ward;
 });
 
 export const deleteWardAsync = createAsyncThunk("ward/deleteWardAsync", async(id)=>{

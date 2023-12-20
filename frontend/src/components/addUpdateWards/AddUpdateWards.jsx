@@ -23,7 +23,8 @@ const AddUpdateWards = () => {
         e.preventDefault();
         if(ward){
             dispatch(updateWardAsync({id:ward._id, ward:wardInput}))
-            navigate(`ward/${ward._id}`)
+            console.log("Ward Updated")
+            navigate(`/ward/${ward._id}`)
         }
         else{
             dispatch(addWardAsync(wardInput));
