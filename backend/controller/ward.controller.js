@@ -89,7 +89,7 @@ const getWardDetails = async (req, res) => {
 
 const updateWard = async(req, res)=>{
     try {
-        const ward = await Ward.findById(req.params.id);
+        let ward = await Ward.findById(req.params.id);
         if(!ward){
             return res.status(404).json({
                 success: false,
@@ -97,10 +97,11 @@ const updateWard = async(req, res)=>{
             })
         }
 
-        await ward.updateOne(req.body);
+        ward = await Ward.findByIdAndUpdate(req.params.id, req.body,{new:true});
         res.status(200).json({
             success: true,
             message:"Updated Ward successfully",
+            ward,
         });
     } catch (error) {
         res.status(500).json({

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
 import {deleteWardAsync} from "./wardSlice";
+import { NavLink } from 'react-router-dom';
+
 
 const SingleWard = () => {
     const { id } = useParams();
@@ -26,7 +28,9 @@ const SingleWard = () => {
           <p><strong>Specialization</strong>{ward.specialization}</p>
         </div>
         <div className="">
-          <button>Edit</button>
+          <NavLink to={`/ward/edit/${id}`} state={ward} >
+          <button className='edit-btn'>Edit</button>
+          </NavLink>
           <button onClick={handleDelete}>Delete</button>
         </div>
     </div>

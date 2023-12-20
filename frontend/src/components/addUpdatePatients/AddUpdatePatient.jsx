@@ -26,7 +26,7 @@ const AddUpdatePatient = () => {
         e.preventDefault();
         if(patient){
             dispatch(updatePatientAsync({id:patient._id, patient:patientInput}))
-            navigate(`/patient/${patient._id}`);
+            navigate(`/patient/${patient._id}`);            
         }
         else{
             dispatch(addPatientAsync(patientInput));

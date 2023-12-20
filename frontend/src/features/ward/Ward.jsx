@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchWards } from './wardSlice';
 import WardTable from '../../components/table/WardTable';
 import Loader from '../../components/loader/Loader';
+import { useNavigate } from 'react-router';
 
 const Ward = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     
 
@@ -22,8 +24,7 @@ const Ward = () => {
     <div className='ward-container'>
       <h2>Wards</h2>
       <div className="">
-        <button>Add Ward</button>
-        
+        <button onClick={()=> navigate('/addWard')}>Add Ward</button>
       </div>
       {
         status === "loading" ? (<Loader/>) : (

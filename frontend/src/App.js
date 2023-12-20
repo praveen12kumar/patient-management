@@ -6,6 +6,9 @@ import SinglePatient from './features/patient/SinglePatient';
 import Ward from './features/ward/Ward';
 import SingleWard from './features/ward/SingleWard';
 import AddUpdatePatient from './components/addUpdatePatients/AddUpdatePatient';
+import AddUpdateWards from './components/addUpdateWards/AddUpdateWards';
+
+
 import './App.css';
 
 function App() {
@@ -19,6 +22,8 @@ function App() {
         <Route path='/patient/edit/:id' element={<AddUpdatePatient/>} />
         <Route path='/ward' element={<Ward/>} />
         <Route path='/ward/:id' element={<SingleWard/>} />
+        <Route path='/addWard' element={<AddUpdateWards/>} />
+        <Route path='/ward/edit/:id' element={<AddUpdateWards/>}/>
       </Routes>
     </div>
   );

@@ -20,7 +20,8 @@ export const addPatientAsync = createAsyncThunk("patient/addPatientAsync", async
 export const updatePatientAsync = createAsyncThunk("patient/updatePatientAsync", async({id,patient}) => {
     
     const response = await axios.put(`https://patient-management-one.vercel.app/api/v1/patient/update/${id}`, patient);
-    return {id,patient};
+    console.log("response", response.data.updatedPatient);
+    return response.data.updatedPatient;
 });
 
 export const deletePatientAsync = createAsyncThunk(
@@ -68,11 +69,10 @@ export const deletePatientAsync = createAsyncThunk(
         })
         .addCase(updatePatientAsync.fulfilled, (state, action)=>{
             state.status = "success";
-            // console.log(action.payload.id);
-            // console.log(action.payload.patient);
-            const updatePatient = action.payload.patient;
+            const updatePatient = action.payload;
+            console.log(action.payload);
             const index = state.patients.findIndex((patient)=>(
-                patient._id === action.payload.id
+                patient._id === action.payload._id
             ));
             console.log("index", index);
             if(index !== -1){
